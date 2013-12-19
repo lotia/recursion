@@ -76,13 +76,24 @@
      :else false)))
 
 (defn my-map [f seq-1 seq-2]
-  [:-])
+  (let [first-1 (first seq-1)
+        rest-1 (rest seq-1)
+        first-2 (first seq-2)
+        rest-2 (rest seq-2)]
+    (if (or (empty? seq-1) (empty? seq-2))
+      ()
+      (cons (f first-1 first-2) (my-map f rest-1 rest-2)))))
 
 (defn power [n k]
-  :-)
+  (if (== k 0)
+    1
+    (* n (power n (dec k)))))
 
 (defn fib [n]
-  :-)
+  (cond
+   (== n 0) 0
+   (== n 1) 1
+   :else (+ (fib (- n 1)) (fib (- n 2)))))
 
 (defn my-repeat [how-many-times what-to-repeat]
   [:-])
